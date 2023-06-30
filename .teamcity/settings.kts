@@ -30,10 +30,37 @@ version = "2023.05"
 project {
 
     buildType(Build)
+    buildType(Build2)
 }
 
 object Build : BuildType({
     name = "Build"
+
+    vcs {
+        root(DslContext.settingsRoot)
+    }
+
+    steps {
+        maven {
+            goals = "clean test"
+            pomLocation = "ch-simple/pom.xml"
+            runnerArgs = "-Dmaven.test.failure.ignore=true"
+        }
+    }
+
+    triggers {
+        vcs {
+        }
+    }
+
+    features {
+        perfmon {
+        }
+    }
+})
+
+object Build2 : BuildType({
+    name = "Build2"
 
     vcs {
         root(DslContext.settingsRoot)
