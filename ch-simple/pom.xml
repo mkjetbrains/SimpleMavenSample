@@ -10,6 +10,7 @@
   <packaging>pom</packaging>
   <name>Simple Project Chapter Parent Project</name>
   <url>http://sonatype.com/book</url>
+
   <modules>
     <module>simple</module>
   </modules>
