@@ -1,2 +1,2 @@
 # SimpleMavenSample
-TeamCity getting started demo
+TeamCity getting started demo - testing
