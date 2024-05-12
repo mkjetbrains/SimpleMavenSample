@@ -1,0 +1,35 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+pool:
+  vmImage: ubuntu-latest
+
+stages:
+  - stage: 'Junit'
+    displayName: 'Junit Stage'
+    jobs:
+      - job: 'JunitTest'
+        displayName: 'Running unit tests'
+        steps:
+        - script: echo 'Running Spring demo app unit test'
+        - task: Maven@3
+          inputs:
+            mavenPomFile: 'pom.xml'
+            goals: 'test'
+            publishJUnitResults: true
+            testResultsFiles: '**/surefire-reports/TEST-*.xml'
+            codeCoverageToolOption: 'JaCoCo'
+            javaHomeOption: 'JDKVersion'
+            mavenVersionOption: 'Default'
+            mavenAuthenticateFeed: false
+            effectivePomSkip: false
+            sonarQubeRunAnalysis: false
+            checkStyleRunAnalysis: true
+            pmdRunAnalysis: true
+            findBugsRunAnalysis: true
+
